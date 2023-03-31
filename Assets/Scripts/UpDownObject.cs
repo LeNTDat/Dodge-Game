@@ -6,14 +6,16 @@ using UnityEngine;
 public class UpDownObject : MonoBehaviour
 {
 
-    float speed = 16f;
+    float speed = 20f;
     bool stop = false;
     Rigidbody rb;
+
+    Vector3 pos;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        InvokeRepeating("StartCourotine", 1.0f, 5f);
+        GoingUp();
     }
 
     // Update is called once per frame
@@ -22,19 +24,25 @@ public class UpDownObject : MonoBehaviour
 
     }
 
-    void StartCourotine()
+    private void OnTriggerEnter(Collider other)
     {
-        StartCoroutine("showTime");
+        print(other.gameObject.tag);
+        if(other.gameObject.tag == "Zone")
+        {
+            GoingUp();
+        }else if(other.gameObject.tag == "GhostBlock") {
+            GoingDown();
+        }
     }
 
-    private IEnumerator showTime() { 
-        yield return new WaitForSeconds(2.0f);
-        rb.velocity = new Vector3(0, 3, 0);
-        rb.useGravity = true;
-        yield return new WaitForSeconds(2.0f);
-        rb.useGravity = false;
-        rb.velocity = new Vector3(0, 10, 0);
-        yield return null;
+
+    private void GoingDown()
+    {
+        rb.velocity = new Vector3(0, -speed, 0);
+    }
+
+    private void GoingUp() { 
+        rb.velocity = new Vector3(0, speed, 0);
     }
 
 }
