@@ -10,6 +10,11 @@ public class SpawnRandomBlock : MonoBehaviour
     public GameObject FinishPlate;
 
     Vector3 pos;
+
+    private void Awake()
+    {
+        
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -28,17 +33,10 @@ public class SpawnRandomBlock : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.gameObject.tag == "BlockChallenge" || other.gameObject.tag == "RotateBlock") { 
-            Destroy(other);
-        }
-        
-    }
 
     void SpawnFinishPlate ()
     {
-        pos.x = Random.Range(-40.0f, 20.0f);
+        pos.x = Random.Range(-40.0f,20.0f);
         pos.z = Random.Range(-25f, 35f);
         Instantiate(FinishPlate, pos, Quaternion.identity);
     }

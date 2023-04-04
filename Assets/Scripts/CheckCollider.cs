@@ -19,7 +19,6 @@ public class CheckCollider : MonoBehaviour
     {
         if(other.gameObject.tag == "Player") {
             ScoreManager.instance.DecrementScore();
-            print(ScoreManager.instance.score);
             transform.GetComponent<Renderer>().material.color = Color.red;    
         }
     }
@@ -31,4 +30,6 @@ public class CheckCollider : MonoBehaviour
             transform.GetComponent<Renderer>().material.color = Color.white;
         }
     }
+
+
 }
