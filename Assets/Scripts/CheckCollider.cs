@@ -19,7 +19,12 @@ public class CheckCollider : MonoBehaviour
     {
         if(other.gameObject.tag == "Player") {
             ScoreManager.instance.DecrementScore();
-            transform.GetComponent<Renderer>().material.color = Color.red;    
+            transform.GetComponent<Renderer>().material.color = Color.red;
+            if(ScoreManager.instance.score == 0)
+            {
+                GameManager.Instance.gameOver = true;
+                UImanager.instance.ShowGameOverScreen();
+            }
         }
     }
 

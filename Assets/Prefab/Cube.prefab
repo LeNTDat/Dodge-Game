@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8040290817773575575}
   - component: {fileID: 8040290817773575571}
   - component: {fileID: 8868832960128739816}
+  - component: {fileID: 8243791603167321269}
   m_Layer: 0
   m_Name: Cube
   m_TagString: BlockChallenge
@@ -125,5 +126,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3bdf3c461d7e46e418ea512580ab7c0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8243791603167321269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8040290817773575572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f23a1848b5f74f84dbcb3fc8a78d6539, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

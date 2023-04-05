@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public bool canMove = false;
-    public bool isStart = false;
+    public bool StageClear = false;
+    public bool gameOver= false;
+    float timeStop;
+
     public static GameManager Instance;
     private void Awake()
     {
@@ -24,27 +28,39 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        countTime();
+        CountTime();
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {
-            print("Done");
+            finishGame();
         }
     }
 
-    void GameStart() {
+    public void GameStart() {
         canMove = true;
     }
 
-    void countTime () {
-        if (isStart)
-        {
-            print(Mathf.Round(Time.time * 100f) / 100f);
-        }
-
+    public void RestartGame()
+    {
+        SceneManager.LoadScene("Game");
     }
 
+    void finishGame()
+    {
+        StageClear = true;
+        UImanager.instance.ShowWinningScreen();
+    }
+
+    void CountTime()
+    {
+        timeStop = Mathf.Round(Time.time * 100f) / 100f;
+        UImanager.instance.printTime(timeStop);
+        if (gameOver || StageClear)
+        {
+            Time.timeScale = 0f;
+        }
+    }
 }

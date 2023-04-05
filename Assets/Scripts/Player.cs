@@ -27,7 +27,6 @@ public class Player : MonoBehaviour
             float InputZ = Input.GetAxis("Vertical") * speed * Time.deltaTime;
 
             transform.Translate(InputX, 0 , InputZ);
-            GameManager.Instance.isStart = true;
         }
     }
 
