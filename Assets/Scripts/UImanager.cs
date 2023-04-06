@@ -8,6 +8,10 @@ public class UImanager : MonoBehaviour
     public Text timeCount;
     public GameObject LosingPanel;
     public GameObject WiningPanel;
+    public GameObject MenuPanel;
+    public GameObject TapStartPanel;
+
+
 
 
 
@@ -30,6 +34,15 @@ public class UImanager : MonoBehaviour
     {
        
         
+    }
+
+    public void ShowMenuStartGame()
+    {
+        if (GameManager.Instance.isStart)
+        {
+            MenuPanel.SetActive(false);
+            TapStartPanel.SetActive(false);
+        }
     }
 
     public void ShowGameOverScreen ()

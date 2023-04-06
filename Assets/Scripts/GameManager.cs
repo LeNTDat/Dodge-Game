@@ -8,7 +8,8 @@ public class GameManager : MonoBehaviour
     public bool canMove = false;
     public bool StageClear = false;
     public bool gameOver= false;
-    float timeStop;
+    public bool isStart = false;
+    float timeStop = 0f;
 
     public static GameManager Instance;
     private void Awake()
@@ -22,13 +23,17 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameStart();
+        gameStart();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
-        CountTime();
+        checkKeydown();
+        if (isStart)
+        {
+            CountTime();
+        }
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -39,8 +44,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void GameStart() {
-        canMove = true;
+    void gameStart()
+    {
+        Time.timeScale = 1f;
     }
 
     public void RestartGame()
@@ -48,17 +54,28 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("Game");
     }
 
+    void checkKeydown()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            canMove = true;
+            isStart = true;
+            UImanager.instance.ShowMenuStartGame();
+        }
+    }
+
     void finishGame()
     {
         StageClear = true;
+        canMove = false;
         UImanager.instance.ShowWinningScreen();
     }
 
     void CountTime()
     {
-        timeStop = Mathf.Round(Time.time * 100f) / 100f;
-        UImanager.instance.printTime(timeStop);
-        if (gameOver || StageClear)
+        timeStop += Time.deltaTime ;
+        UImanager.instance.printTime((Mathf.Round(timeStop * 1000))/1000);
+        if(gameOver || StageClear)
         {
             Time.timeScale = 0f;
         }

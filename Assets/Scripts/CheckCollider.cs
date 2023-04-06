@@ -23,6 +23,7 @@ public class CheckCollider : MonoBehaviour
             if(ScoreManager.instance.score == 0)
             {
                 GameManager.Instance.gameOver = true;
+                GameManager.Instance.canMove = false;
                 UImanager.instance.ShowGameOverScreen();
             }
         }

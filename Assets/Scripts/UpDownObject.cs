@@ -7,7 +7,7 @@ public class UpDownObject : MonoBehaviour
 {
 
     float speed = 20f;
-    bool stop = false;
+    bool stop;
     Rigidbody rb;
 
     Vector3 pos;
@@ -15,21 +15,16 @@ public class UpDownObject : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        GoingUp();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Zone")
+        if (other.gameObject.tag == "Zone")
         {
             GoingUp();
-        }else if(other.gameObject.tag == "GhostBlock") {
+        }
+        else if (other.gameObject.tag == "GhostBlock")
+        {
             GoingDown();
         }
     }
